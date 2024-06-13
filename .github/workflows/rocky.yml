@@ -39,5 +39,5 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            ghcr.io/codetiger666/rocky:9
-            ghcr.io/codetiger666/rocky:latest
+            ghcr.io/codetiger666/images/rocky:9
+            ghcr.io/codetiger666/imaves/rocky:latest
