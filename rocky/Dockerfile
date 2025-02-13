@@ -17,5 +17,5 @@ openssl-devel pam-devel unzip gcc screen \
 openssl openssl-devel bash-completion* \
 pcre-devel libxslt* perl-ExtUtils-Embed \
 createrepo gcc-c++ golang nodejs perl \
-perl-core --skip-broken \
+perl-core lksctp-tools-devel --skip-broken \
 && npm install pnpm yarn -g 
