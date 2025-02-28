@@ -36,6 +36,7 @@ jobs:
 
       - name: Build And Push
         uses: docker/build-push-action@v3
+        if: ${{ matrix.release != '9' }}
         with:
           context: .
           file: ./rocky/Dockerfile
