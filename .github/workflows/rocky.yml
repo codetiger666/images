@@ -10,7 +10,6 @@ jobs:
       fail-fast: false
       matrix:
         release:
-          - '7'
           - '9'
           - '10'
 
@@ -33,7 +32,7 @@ jobs:
 
       - name: handle release
         run: |
-          sed -i 's|rockylinux:9|rockylinux:${{ matrix.release }}|' ./rocky/Dockerfile
+          sed -i 's|rockylinux/rockylinux:9|rockylinux/rockylinux:${{ matrix.release }}|' ./rocky/Dockerfile
 
       - name: Build And Push
         uses: docker/build-push-action@v3
