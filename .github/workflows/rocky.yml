@@ -5,6 +5,7 @@ on:
 
 jobs:
   build:
+    name: rocky-${{ matrix.release }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
