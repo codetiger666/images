@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: rocky-${{ matrix.release }}
+    name: rocky-${{ github.event.inputs.release }}
     runs-on: ubuntu-latest
 
     steps:
@@ -35,7 +35,7 @@ jobs:
           sed -i 's|rockylinux/rockylinux:9|rockylinux/rockylinux:${{ github.event.inputs.release }}|' ./rocky/DockerfileTest
 
       - name: Build And Push
-        uses: docker/build-push-action@v
+        uses: docker/build-push-action@v3
         with:
           context: .
           file: ./rocky/DockerfileTest
