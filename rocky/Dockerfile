@@ -1,3 +1,13 @@
-FROM rockylinux/rockylinux:9
+ARG OS_VERSION=9
+FROM rockylinux/rockylinux:${OS_VERSION}
+ARG OS_VERSION
 RUN rm -rf /etc/yum.repos.d/* && \
+if [ "${OS_VERSION%%.*}" = "8" ]; then \
+    echo '[PowerTools]' > /etc/yum.repos.d/powertools.repo && \
+    echo 'name=Rocky $releasever - PowerTools' >> /etc/yum.repos.d/powertools.repo && \
+    echo 'baseurl=https://download.rockylinux.org/pub/rocky/$releasever/PowerTools/$basearch/os/' >> /etc/yum.repos.d/powertools.repo && \
+    echo 'enabled=1' >> /etc/yum.repos.d/powertools.repo && \
+    echo 'gpgcheck=0' >> /etc/yum.repos.d/powertools.repo && \
+    echo 'skip_if_unavailable=1' >> /etc/yum.repos.d/powertools.repo; \
+fi && \
 curl https://raw.githubusercontent.com/codetiger666/linux/master/scripts/linux/rocky/rocky.repo > /etc/yum.repos.d/rocky.repo && dnf install -y pcre-devel ldc libevent-devel sqlite-devel net-snmp-devel mysql-community-client mysql-community-common mysql-community-devel mysql-community-libs rpmdevtools libssh2-devel OpenIPMI-devel openssl-devel libxslt* perl-ExtUtils-Embed gcc-c++ python subversion gperf make rpm-build git curl bzip2-devel libcurl-devel gd gd-devel  libtidy libtidy-devel GeoIP-devel libatomic_ops-devel zlib-devel unzip libstdc++* net-snmp-utils gmp gmp-devel gmp gmp-devel openldap openldap-devel libpcap-devel glib2-devel GeoIP-devel libxml2-devel libxml2-devel vim wget automake mlocate openssl-devel pam-devel unzip gcc screen openssl openssl-devel bash-completion* pcre-devel pcre2-devel libxslt* perl-ExtUtils-Embed createrepo gcc-c++ dbus dbus-devel nodejs lksctp-tools-devel perl-FindBin perl-core python3 python3-pip glibc-devel glibc-static zlib-static libselinux-devel libselinux-static pcre2-static gnutls-utils groff krb5-devel libidn2-devel libnghttp2-devel libpsl-devel libssh-devel libtool nghttp2 openssh-server python-unversioned-command python3-devel --skip-broken

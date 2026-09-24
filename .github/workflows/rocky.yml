@@ -34,7 +34,7 @@ jobs:
 
       - name: handle release
         run: |
-          sed -i 's|rockylinux/rockylinux:9|rockylinux/rockylinux:${{ matrix.release }}|' ./rocky/Dockerfile
+          sed -i 's|ARG OS_VERSION=9|ARG OS_VERSION=${{ matrix.release }}|' ./rocky/Dockerfile
 
       - name: Build And Push
         uses: docker/build-push-action@v3
